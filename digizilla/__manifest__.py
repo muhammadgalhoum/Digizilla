@@ -23,9 +23,11 @@
     'demo': [
         'demo/demo.xml',
     ],
-    'web.assets_frontend': [
-        'digizilla/static/src/js/hiding_create_btn.js',
-    ],
+    'assets': {
+        'web.assets_frontend': [
+            'digizilla/static/src/js/hiding_create_btn.js',
+        ],
+    },
 
     'installable': True,
     'auto_install': False,

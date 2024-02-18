@@ -1,0 +1,76 @@
+<odoo>
+    <record id="digizilla_view_tree" model="ir.ui.view">
+        <field name="name">Digizilla Tree View</field>
+        <field name="model">digizilla</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1">
+                <field name="name" />
+                <field name="gender" />
+                <field name="country" />
+                <field name="company" />
+                <field name="joining_date" />
+                <field name="tag_id" optional="1" />
+                <field name="customer_ids" optional="1" />
+                <field name="notes" optional="1" />
+                <field name="comments" optional="1" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="digizilla_view_form" model="ir.ui.view">
+        <field name="name">digizilla Form View</field>
+        <field name="model">digizilla</field>
+        <field name="arch" type="xml">
+            <!-- Here I hid the create button in the form view but using Python not JS as required -->
+            <form create="0">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="General Info">
+                            <field name="gender" />
+                            <field name="country" />
+                            <field name="company" />
+                        </group>
+                        <group string="Additional Info">
+                            <field name="joining_date" />
+                            <field name="tag_id" />
+                            <field name="customer_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes" placeholder="Please write your notes here" />
+                        </page>
+                        <page string="Comments">
+                            <field name="comments" placeholder="Please write your comment here" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="digizilla_action" model="ir.actions.act_window">
+        <field name="name">Digizilla</field>
+        <field name="res_model">digizilla</field>
+        <field name="view_mode">kanban,form,tree</field>
+    </record>
+
+    <menuitem
+        id="digizilla_menu_item"
+        name="Digizilla"
+        parent="digizilla_menu"
+        action="digizilla_action"
+        sequence="1"
+    />
+</odoo>
